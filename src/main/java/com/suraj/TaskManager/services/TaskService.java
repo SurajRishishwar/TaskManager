@@ -25,6 +25,12 @@ public class TaskService {
         return repository.findAll();
     }
 
+    public List<Task>getTaskbyusername(String username){
+        User user=userRepository.findByUsername(username);
+
+        return repository.findAllByUser(user);
+    }
+
     public Task addtask(Task task,String username) {
         if(task.getGoal().isEmpty()){
             throw new GoalCannotBeNull("Goal Cannot Be Null");

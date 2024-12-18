@@ -24,6 +24,14 @@ public class TaskController {
         List<Task> tasklist=service.getTask();
         return new ResponseEntity<>(tasklist,HttpStatus.OK);
     }
+
+    @GetMapping("/tasksforuser")
+    public ResponseEntity<?> findalltaskforuser(Authentication authentication){
+        String username=authentication.getName();
+        List<Task> tasklist=service.getTaskbyusername(username);
+        return new ResponseEntity<>(tasklist,HttpStatus.OK);
+    }
+
     @PostMapping("/task")
     public ResponseEntity<?> addTask(@RequestBody Task task, Authentication authentication){
         try{
