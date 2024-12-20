@@ -19,6 +19,11 @@ package com.suraj.TaskManager.config;
         import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
         import org.springframework.security.web.SecurityFilterChain;
         import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+        import org.springframework.web.cors.CorsConfiguration;
+        import org.springframework.web.cors.CorsConfigurationSource;
+        import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+        import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -42,7 +47,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.csrf(customizer -> customizer.disable())
+        http
+        .csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("register", "login")
                         .permitAll()
