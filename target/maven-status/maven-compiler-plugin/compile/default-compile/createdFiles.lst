@@ -1,0 +1,16 @@
+com\suraj\TaskManager\config\JwtFilter.class
+com\suraj\TaskManager\TaskManagerApplication.class
+com\suraj\TaskManager\controller\TaskController.class
+com\suraj\TaskManager\Exceptions\GoalCannotBeNull.class
+com\suraj\TaskManager\entity\UserPrincipal.class
+com\suraj\TaskManager\repository\UserRepository.class
+com\suraj\TaskManager\repository\TaskRepository.class
+com\suraj\TaskManager\Exceptions\DataNotPresent.class
+com\suraj\TaskManager\services\JwtService.class
+com\suraj\TaskManager\config\SecurityConfig.class
+com\suraj\TaskManager\controller\UserController.class
+com\suraj\TaskManager\services\UserService.class
+com\suraj\TaskManager\services\TaskService.class
+com\suraj\TaskManager\entity\User.class
+com\suraj\TaskManager\entity\Task.class
+com\suraj\TaskManager\services\MyUserDetailsService.class
