@@ -48,7 +48,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-        .csrf(customizer -> customizer.disable()).cors(customizer -> customizer.disable())
+        .csrf(customizer -> customizer.disable())
+//                .cors(customizer -> customizer.disable())
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("register", "login")
                         .permitAll()
@@ -76,7 +78,25 @@ public class SecurityConfig {
 //        source.registerCorsConfiguration("/**", configuration); // Apply CORS to all endpoints
 //        return source;
 //    }
+@Bean
+public CorsConfigurationSource corsConfigurationSource() {
+    // Allow specific paths to use CORS
+    CorsConfiguration configuration = new CorsConfiguration();
+    configuration.setAllowedOrigins(List.of("https://www.programiz.com","http://localhost:3000","http://localhost:3000")); // Replace with allowed origins
+    configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE")); // Allowed methods
+    configuration.setAllowedHeaders(List.of("*")); // Allowed headers
+    configuration.setAllowCredentials(true); // Allow credentials
 
+    // Disable CORS for other requests by excluding their mappings
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//    source.registerCorsConfiguration("/register", configuration); // Apply CORS for `/register`
+    source.registerCorsConfiguration("/login", configuration); // Apply CORS for `/login`
+    source.registerCorsConfiguration("/tasks", configuration);// Apply CORS for `/login`
+    source.registerCorsConfiguration("/tasksforuser", configuration);
+    // Do not register CORS for other endpoints to effectively disable it
+
+    return source;
+}
 
 
 
