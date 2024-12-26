@@ -82,7 +82,7 @@ public class SecurityConfig {
 public CorsConfigurationSource corsConfigurationSource() {
     // Allow specific paths to use CORS
     CorsConfiguration configuration = new CorsConfiguration();
-    configuration.setAllowedOrigins(List.of("https://www.programiz.com","http://localhost:3000","http://localhost:3000")); // Replace with allowed origins
+    configuration.setAllowedOrigins(List.of("https://www.programiz.com","http://localhost:3000","https://task-manager-react1.vercel.app")); // Replace with allowed origins
     configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE")); // Allowed methods
     configuration.setAllowedHeaders(List.of("*")); // Allowed headers
     configuration.setAllowCredentials(true); // Allow credentials
