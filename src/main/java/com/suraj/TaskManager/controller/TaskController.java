@@ -27,6 +27,12 @@ public class TaskController {
         return new ResponseEntity<>(tasklist,HttpStatus.OK);
     }
 
+    @GetMapping("/unauthtask")
+    public ResponseEntity<?> findalltaskunauth(){
+        List<Task> tasklist=service.getTask();
+        return new ResponseEntity<>(tasklist,HttpStatus.OK);
+    }
+
     @GetMapping("/tasksforuser")
     public ResponseEntity<?> findalltaskforuser(Authentication authentication){
         String username=authentication.getName();

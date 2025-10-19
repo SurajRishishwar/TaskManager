@@ -52,7 +52,7 @@ public class SecurityConfig {
 //                .cors(customizer -> customizer.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("register", "login")
+                        .requestMatchers("register", "login","unauthtask")
                         .permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -82,7 +82,8 @@ public class SecurityConfig {
 public CorsConfigurationSource corsConfigurationSource() {
     // Allow specific paths to use CORS
     CorsConfiguration configuration = new CorsConfiguration();
-    configuration.setAllowedOrigins(List.of("https://www.programiz.com","http://localhost:3000","https://task-manager-react1.vercel.app")); // Replace with allowed origins
+//    configuration.setAllowedOrigins(List.of("https://www.programiz.com","http://localhost:3000","https://task-manager-react1.vercel.app")); // Replace with allowed origins
+    configuration.setAllowedOriginPatterns(List.of("*"));
     configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE")); // Allowed methods
     configuration.setAllowedHeaders(List.of("*")); // Allowed headers
     configuration.setAllowCredentials(true); // Allow credentials
@@ -93,6 +94,7 @@ public CorsConfigurationSource corsConfigurationSource() {
     source.registerCorsConfiguration("/login", configuration); // Apply CORS for `/login`
     source.registerCorsConfiguration("/tasks", configuration);// Apply CORS for `/login`
     source.registerCorsConfiguration("/tasksforuser", configuration);
+    source.registerCorsConfiguration("/unauthtask",configuration);
     // Do not register CORS for other endpoints to effectively disable it
 
     return source;
